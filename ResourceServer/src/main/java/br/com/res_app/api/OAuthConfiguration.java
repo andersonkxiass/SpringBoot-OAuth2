@@ -29,10 +29,10 @@ public class OAuthConfiguration extends ResourceServerConfigurerAdapter {
     public void configure(ResourceServerSecurityConfigurer resources) {
 		
        	RemoteTokenServices tokenService = new RemoteTokenServices();
-        tokenService.setClientId("fooClientIdPassword");
-        tokenService.setClientSecret("secret");
+        tokenService.setClientId("resource-server");
+        tokenService.setClientSecret("resource-server");
         tokenService.setCheckTokenEndpointUrl("http://localhost:8080/oauth/check_token");
-       
+        
         resources.tokenServices(tokenService);
     }
 
