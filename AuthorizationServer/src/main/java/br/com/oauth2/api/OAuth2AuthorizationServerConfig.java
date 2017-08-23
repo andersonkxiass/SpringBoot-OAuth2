@@ -38,7 +38,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 
 	@Value("classpath:data.sql")
 	private Resource dataScript;
-	
+
 	@Override
 	public void configure(final AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
 		oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
@@ -54,8 +54,8 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 	public void configure(final AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		// @formatter:off
 		endpoints.tokenStore(tokenStore())
-			.authenticationManager(authenticationManagerBean)
-			.userDetailsService(userDetailsService);
+		.authenticationManager(authenticationManagerBean)
+		.userDetailsService(userDetailsService);
 		// @formatter:on
 	}
 
@@ -76,19 +76,19 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 		return initializer;
 	}
 
-	private DatabasePopulator databasePopulator() {
+	public DatabasePopulator databasePopulator() {
 		final ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
 		populator.addScript(schemaScript);
 		populator.addScript(dataScript);
 		return populator;
 	}
-	
-    @Bean
-    @Primary
-    @ConfigurationProperties(prefix = "spring.datasource")
-    public DataSource dataSource() {
-        return DataSourceBuilder.create().build();
-    }
+
+	@Bean
+	@Primary
+	@ConfigurationProperties(prefix = "spring.datasource")
+	public DataSource dataSource() {
+		return DataSourceBuilder.create().build();
+	}
 
 	@Bean
 	public TokenStore tokenStore() {
